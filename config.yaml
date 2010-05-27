@@ -1,0 +1,51 @@
+name: Konjak Translation
+id: Konjak
+author_link: http://elasticconsultants.com/
+author_name: ELASTIC Consultants Inc.
+description: <__trans phrase="Translate to other languages.">
+version: 1.01
+plugin_link: http://konjak.jp/
+l10n_class: Konjak::L10N
+schema_version: 1.00
+object_types:
+    konjak_cache: Konjak::Cache
+settings:
+    translation_engine:
+        default: 'google'
+        scope: blog
+    engine_bing_appid:
+        default:
+        scope: blog
+    original_language:
+        default: 'ja'
+        scope: blog
+    debug:
+        default: 0
+        scope: system
+blog_config_template: blog_config.tmpl
+tags:
+    block:
+        TranslateText: $Konjak::Konjak::Plugin::tag_block_translate
+    modifier:
+        translate_language:
+            handler: $Konjak::Konjak::Plugin::tag_modifire_translate
+callbacks:
+    cms_post_delete.entry: $Konjak::Konjak::Plugin::callback_cms_post_delete_entry
+    cms_post_delete.page: $Konjak::Konjak::Plugin::callback_cms_post_delete_entry
+    cms_post_save.entry: $Konjak::Konjak::Plugin::callback_cms_post_save_entry
+    cms_post_save.page: $Konjak::Konjak::Plugin::callback_cms_post_save_entry
+    post_build: $Konjak::Konjak::Plugin::callback_post_build
+applications:
+    cms:
+        methods:
+            konjak_remove_cache: $Konjak::Konjak::Plugin::method_remove_cache
+#        page_actions:
+#            list_entry:
+#                konjak_remove_cache:
+#                    label: <__trans phrase="Remove All Translation Cache">
+#                    mode: konjak_remove_cache
+#            list_page:
+#                konjak_remove_cache:
+#                    label: <__trans phrase="Remove All Translation Cache">
+#                    mode: konjak_remove_cache
+

@@ -1,0 +1,39 @@
+<mtapp:setting
+	id="translation_engine"
+	label="<__trans phrase="Translation Engine">"
+	>
+	<ul>
+		<li>
+			<label><input type="radio" name="translation_engine" value="google" <mt:If name="translation_engine_google">checked="checked"</mt:If>> Google</input></label>
+		</li>
+		<li>
+			<label><input type="radio" name="translation_engine" value="bing" <mt:If name="translation_engine_bing">checked="checked"</mt:If>> Bing</input></label>
+			<ul>
+				<li>
+					<label>
+					<__trans phrase="Bing Application ID">
+					<input type="text" name="engine_bing_appid" value="<mt:getvar name="engine_bing_appid">"/>
+					</label>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</mtapp:setting>
+<mtapp:setting
+	id="original_language"
+	label="<__trans phrase="Original Language">"
+	>
+	<label>
+		<input type="text" name="original_language" value="<mt:getvar name="original_language">"/>
+	</label>
+</mtapp:setting>
+<div class="actions-bar settings-actions-bar">
+	<div class="actions-bar-inner pkg actions">
+	<button
+		mt:mode="konjak_remove_cache"
+		type="submit"
+		class="primary-button"
+		onclick="return confirm('<__trans phrase="Remove all translation cache." escape="js">');"
+	><__trans phrase="Remove All Translation Cache"></button>
+	</div>
+</div>
